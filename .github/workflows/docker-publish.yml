@@ -22,7 +22,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: utsav0077/${{ github.event.repository.name }}
+          images: dhairya442/${{ github.event.repository.name }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v5.0.0
