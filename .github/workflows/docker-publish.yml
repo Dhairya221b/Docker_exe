@@ -24,10 +24,22 @@ jobs:
         with:
           images: dhairya442/${{ github.event.repository.name }}
       
+      - name: Generate Image Tag from Commit Hash
+        id: generate_tag
+        run: echo "::set-output name=tag::${GITHUB_SHA:0:7}"
+
+      - name: Generate Image Tag from Epoch
+        id: generate
+        run: echo "::set-output name=tag::$(date +%s)"
+
+      
       - name: Build and push Docker image
         uses: docker/build-push-action@v5.0.0
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}-${{ github.run_number }}
+          tags: ${{ steps.meta.outputs.tags }}-${{ steps.generate_tag.outputs.tag }}-${{ steps.generate.outputs.tag }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  ## branch name/commit-hash/epoch
+  ## linters , helm linter , 
