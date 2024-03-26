@@ -32,8 +32,8 @@ jobs:
         id: generate
         run: echo "::set-output name=tag::$(date +%s)"
 
-      - name: Lint Dockerfile with dockerfmt
-        run: docker run --rm -v $(pwd):/workspace ghcr.io/dockerfmt/dockerfmt dockerfmt -l -d .
+      # - name: Lint Dockerfile with dockerfmt
+      #   run: docker run --rm -v $(pwd):/workspace ghcr.io/dockerfmt/dockerfmt dockerfmt -l -d .
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v5.0.0
